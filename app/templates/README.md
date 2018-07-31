@@ -1,9 +1,15 @@
 # react-webpack4-component-quickstart
 a quick start for a component based on react & webpack4
 
-# development
+## development
 ```
 npm install
 
 npm start
+```
+
+## publish
+
+```
+tnpm publish
 ```
