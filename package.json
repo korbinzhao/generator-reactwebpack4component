@@ -1,6 +1,6 @@
 {
   "name": "generator-reactwebpack4component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a scaffold generator for a component based on react & webpack4 project",
   "scripts": {
     "test": "jest",
