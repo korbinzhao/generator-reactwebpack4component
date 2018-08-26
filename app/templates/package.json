@@ -2,7 +2,7 @@
   "name": "@ali/component-name",
   "version": "0.0.1",
   "description": "> Webpack 4 tutorial: All You Need to Know, from 0 Conf to Production Mode",
-  "main": "build/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
