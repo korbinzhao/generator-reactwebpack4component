@@ -1,4 +1,5 @@
-const gulp = require('gulp');
+const { series, src, dest } = require('gulp');
+
 const less = require('gulp-less');
 const stylus = require('gulp-stylus');
 const postcss = require('gulp-postcss');
@@ -7,25 +8,24 @@ const autoprefixer = require('autoprefixer');
 
 const replace = require('gulp-replace');
 
-gulp.task('less', () => gulp.src('src/*.less')
+const lessFn = () => src('src/*.less')
   .pipe(less())
-  .pipe(gulp.dest('lib')));
+  .pipe(dest('./lib'));
 
-gulp.task('stylus', () => gulp.src('src/*.styl')
+const stylusFn = () => src('src/*.styl')
   .pipe(stylus())
-  .pipe(gulp.dest('lib')));
+  .pipe(dest('./lib'));
 
-gulp.task('autoprefixer', () => gulp.src('src/*.css')
+const autoprefixerFn = () => src('src/*.css')
   .pipe(sourcemaps.init())
   .pipe(postcss([autoprefixer()]))
   .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest('./lib')));
+  .pipe(dest('./lib'));
 
-gulp.task('replace', () => {
-  gulp.src('lib/*.js')
+const replaceFn = () => 
+  src('lib/*.js')
     .pipe(replace(/\/(.+)\.less/, '/$1.css'))
     .pipe(replace(/\/(.+)\.styl/, '/$1.css'))
-    .pipe(gulp.dest('lib'));
-});
+    .pipe(dest('./lib'));
 
-gulp.task('default', ['less', 'stylus', 'autoprefixer', 'replace']);
+exports.default = series(lessFn, stylusFn, autoprefixerFn, replaceFn);
